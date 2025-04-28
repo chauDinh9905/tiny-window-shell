@@ -100,6 +100,14 @@ int handle_builtIn_command(char **words)
         return 0;
     }
 
+    if (strcmp(words[0], "lastboot") == 0) {
+        int result = system("lastboot.bat");
+        if (result != 0) {
+            perror("Error executing lastboot.bat");
+        }
+        return 1;
+    }
+
     if (strcmp(words[0], "cd") == 0) // command to open a file ( a dỉactory)
     {
         if (words[1] == NULL)
@@ -231,6 +239,7 @@ int handle_builtIn_command(char **words)
         printf(" del: delete files\n");
         printf(" dir: list files in the current directory\n");
         printf(" rd: remove directory\n");
+        printf("lastboot: show last boot time\n");
         return 1;
     }
     return 1;
